@@ -1,0 +1,29 @@
+<div>
+    <h1 class="text-center">POSTS LISTS</h1>
+</div>
+<div>
+    <a [routerLink]="['/']">Return to Home Page</a> |
+    <a [routerLink]="['/posts','addpost']">Add Post</a>
+</div>
+<table class="table table-responsive table-striped table-dark table-bordered text-center">
+    <thead class="fs-4">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let post of posts$ | async">
+            <td>{{ post?.id }}</td>
+            <td>{{ post?.title }}</td>
+            <td>{{ post?.content }}</td>
+            <td>
+                <a [routerLink]="['/posts','editpost',post.id]">Edit Post</a> |
+                <a [routerLink]="['/posts']" (click)="deletePost(post.id)">Delete Post</a> |
+                <a [routerLink]="['/posts','details',post.id]">View Details</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
